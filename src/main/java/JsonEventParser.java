@@ -10,7 +10,7 @@ public class JsonEventParser {
     
     public static void main(String [] args) {
     	String currPath = System.getProperty("user.dir");
-        //create JsonReader object and pass it the json file,json source or json text.
+        //create JsonReader object and pass it the json file. I use a Input stream and Gson's builder here to account for larger files
         try(
         	JsonReader jsonReader = new JsonReader(
                 new InputStreamReader(
@@ -29,6 +29,7 @@ public class JsonEventParser {
             		ResultSet result = getExisStatement.executeQuery();
             		result.next();
             		
+            		//Check to see if the Event already exists in the DB, if it does not, we create it
                 	if (result.getRow() == 0) {
                 		String createQuery = "INSERT INTO PUBLIC.Event (eventId, eventDuration, timeStart, type, host, alert)"
                 				+ " VALUES (?, ?, ?, ?, ?, ?)";
@@ -44,7 +45,7 @@ public class JsonEventParser {
                 		ps.setString(5, hostNull);
                 		
                 		ps.executeUpdate();
-                	} else {
+                	} else { //if it does already exist calculate the duration and need for an alarm and update the DB
                 		int existingTime = result.getInt("timeStart");
                 		int duration = (existingTime - (int)newEvent.getTimestamp());
                 		duration = duration < 0 ? duration * -1 : duration;

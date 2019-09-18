@@ -1,4 +1,4 @@
-
+// Class that Gson can map the values it finds to.
 public class EventEntry {
     String id;
     int eventDuration;
