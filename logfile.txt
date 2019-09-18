@@ -1,0 +1,7 @@
+[
+	{"id":"scsmbstgr4", "state":"STARTED", "type":"APPLICATION_LOG", "host":"12345", "timestamp":1491377495212},
+	{"id":"scsmbstgr5", "state":"STARTED", "timestamp":1491377495213},
+	{"id":"scsmbstgr6", "state":"FINISHED", "timestamp":1491377495218},
+	{"id":"scsmbstgr4", "state":"FINISHED", "type":"APPLICATION_LOG", "host":"12345", "timestamp":1491377495217},
+	{"id":"scsmbstgr6", "state":"STARTED", "timestamp":1491377495210}
+]
